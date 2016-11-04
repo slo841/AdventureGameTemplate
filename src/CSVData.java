@@ -50,6 +50,8 @@ public class CSVData {
 		for (int r = startRow; r < lines.length; r++) {
 			String line = lines[r];
 			String[] coords = line.split(",");
+			
+			if (coords[r].endsWith(" ")) r++;
 
 			for (int j = startColumn; j < numColumns; j++) {
 				if (coords[j].endsWith("#")) coords[j] = coords[j].substring(0, coords[j].length()-1);
