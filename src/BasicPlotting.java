@@ -5,7 +5,8 @@ import org.math.plot.Plot2DPanel;
 
 public class BasicPlotting {
 	public static double[][] sampleData;
-	public static String datafile = "data/64StepsInPocketJogging-out.csv";
+//	public static String datafile = "data/64StepsInPocketJogging-out.csv";
+	public static String datafile = "data/64StepsInHandJogging-out.csv";
 	
 	public static void main(String[] args) {
 		// Create data set
@@ -21,16 +22,23 @@ public class BasicPlotting {
 		System.out.println(steps);
 		
 		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 1, 2, 3 });
-		double[] mags = CountStepsBlank.calculateMagnitudesFor(accel);
+		double[] accmags = CountStepsBlank.calculateMagnitudesFor(accel);
 		
-		System.out.println(CountStepsBlank.calculateMean(mags));
-		System.out.println(CountStepsBlank.calculateStandardDeviation(mags, CountStepsBlank.calculateMean(mags)));
+//		double[][] gyro = ArrayHelper.extractColumns(sampleData, new int[] { 4, 5, 6 });
+//		double[] gmags = CountStepsBlank.calculateMagnitudesFor(gyro);
+		
+		System.out.println(CountStepsBlank.calculateMean(accmags));
+		System.out.println(CountStepsBlank.calculateStandardDeviation(accmags, CountStepsBlank.calculateMean(accmags)));
+		
+//		System.out.println(CountStepsBlank.calculateMean(gmags));
+//		System.out.println(CountStepsBlank.calculateStandardDeviation(gmags, CountStepsBlank.calculateMean(gmags)));
 		
 		
 		Plot2DPanel plot = new Plot2DPanel();
 		
 		// add a line plot to the PlotPanel
-		plot.addLinePlot("y = x + noise", mags);
+		plot.addLinePlot("y = x + noise", accmags);
+//		plot.addLinePlot("y = x + noise", gmags);
 		
 		// put the PlotPanel in a JFrame, as a JPanel
 		JFrame frame = new JFrame("Results");

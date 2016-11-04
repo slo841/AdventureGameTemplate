@@ -21,8 +21,29 @@ public class CountStepsBlank {
 	 * 
 	 * @return an int representing the number of steps
 	 */
-	private static int countSteps(double[] times, double[][] sensorData) {
-		return 0;
+	public static int countSteps(double[] times, double[][] sensorData) {
+		double[] accData = new double[3];
+		int stepCount = 0;
+				
+		for (int row = 0; row < sensorData.length; row++) {
+			for (int col = 1; col <= 3; col++) {
+				accData = calculateMagnitudesFor(sensorData);
+			}	
+		}
+		
+		for (int i = 1; i < accData.length - 1; i++) {
+			double[] threePoints = {accData[i - 1], accData[i], accData[i + 1]};
+			
+			double mean = calculateMean(threePoints);
+			double accStandardDev = calculateStandardDeviation(threePoints, mean);
+			
+			double threshold = accStandardDev + mean;
+				
+			if (accData[i] > threshold) {
+				stepCount++;
+			}
+		}
+		return stepCount;
 	}
 
 	/***
@@ -73,8 +94,15 @@ public class CountStepsBlank {
 	 *            the mean of the data (must be pre-calculated).
 	 * @return the standard deviation of the data.
 	 */
-	private static double calculateStandardDeviation(double[] arr, double mean) {
-		return 0.0;
+	public static double calculateStandardDeviation(double[] arr, double mean) {
+		double sum = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			double diff = Math.pow((arr[i] - mean), 2);
+			sum += diff;
+		}
+		double num = sum / (arr.length - 1);
+		return Math.sqrt(num);
 	}
 
 	/***
@@ -84,8 +112,13 @@ public class CountStepsBlank {
 	 *            the array of values
 	 * @return the mean of the data
 	 */
-	private static double calculateMean(double[] arr) {
-		return 0.0;
+	public static double calculateMean(double[] arr) {
+		double sum = 0;
+
+		for (int i = 0; i < arr.length; i++) {
+			sum += arr[i];
+		}
+		return (double) (sum / arr.length);
 	}
 
 	public static void displayJFrame(Plot2DPanel plot) {
