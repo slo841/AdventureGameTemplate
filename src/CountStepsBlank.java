@@ -31,15 +31,22 @@ public class CountStepsBlank {
 			}	
 		}
 		
+		double mean = calculateMean(accData);
+		double accStandardDev = calculateStandardDeviation(accData, mean);
+		
+		double threshold = accStandardDev + mean;
+		
 		for (int i = 1; i < accData.length - 1; i++) {
 			double[] threePoints = {accData[i - 1], accData[i], accData[i + 1]};
 			
-			double mean = calculateMean(threePoints);
-			double accStandardDev = calculateStandardDeviation(threePoints, mean);
+			double pointMean = calculateMean(threePoints);
+			double pointSD = calculateStandardDeviation(threePoints, pointMean);
 			
-			double threshold = accStandardDev + mean;
+			double pointThreshold = pointSD + mean;
 				
-			if (accData[i] > threshold) {
+			if (accData[i] > pointThreshold) {
+				//&& accData[i] >= threshold - __
+				//|| accData[i] <= threshold + __
 				stepCount++;
 			}
 		}
