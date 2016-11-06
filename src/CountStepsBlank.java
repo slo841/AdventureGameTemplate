@@ -44,9 +44,8 @@ public class CountStepsBlank {
 			
 			double pointThreshold = pointSD + mean;
 				
-			if (accData[i] > pointThreshold) {
-				//&& accData[i] >= threshold - __
-				//|| accData[i] <= threshold + __
+			if (accData[i] > pointThreshold && accData[i] >= threshold - 4.0
+					|| accData[i] <= threshold + 4.0) {
 				stepCount++;
 			}
 		}
