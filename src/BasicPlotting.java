@@ -21,7 +21,7 @@ public class BasicPlotting {
 		int steps = CountStepsBlank.countSteps(time, sensorData);
 		System.out.println(steps);
 		
-		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 1, 2, 3 });
+		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
 		double[] accmags = CountStepsBlank.calculateMagnitudesFor(accel);
 		
 //		double[][] gyro = ArrayHelper.extractColumns(sampleData, new int[] { 4, 5, 6 });

@@ -26,7 +26,7 @@ public class CountStepsBlank {
 		int stepCount = 0;
 				
 		for (int row = 0; row < sensorData.length; row++) {
-			for (int col = 1; col <= 3; col++) {
+			for (int col = 10; col <= 12; col++) {
 				accData = calculateMagnitudesFor(sensorData);
 			}	
 		}
