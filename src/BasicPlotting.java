@@ -16,7 +16,7 @@ public class BasicPlotting {
 		sampleData = dataset.getAllData();
 
 		double[] time = ArrayHelper.extractColumn(sampleData, 0);		
-		double[][] sensorData = ArrayHelper.extractColumns(sampleData, new int[] { 1, 2, 3, 4, 5, 6 });
+		double[][] sensorData = ArrayHelper.extractColumns(sampleData, new int[] { 4, 5, 6, 10, 11, 12 });
 		
 		int steps = CountStepsBlank.countSteps(time, sensorData);
 		System.out.println(steps);
@@ -24,22 +24,14 @@ public class BasicPlotting {
 		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
 		double[] accmags = CountStepsBlank.calculateMagnitudesFor(accel);
 		
-//		double[][] gyro = ArrayHelper.extractColumns(sampleData, new int[] { 4, 5, 6 });
-//		double[] gmags = CountStepsBlank.calculateMagnitudesFor(gyro);
-		
 		System.out.println(CountStepsBlank.calculateMean(accmags));
-		System.out.println(CountStepsBlank.calculateStandardDeviation(accmags, CountStepsBlank.calculateMean(accmags)));
-		
-//		System.out.println(CountStepsBlank.calculateMean(gmags));
-//		System.out.println(CountStepsBlank.calculateStandardDeviation(gmags, CountStepsBlank.calculateMean(gmags)));
-		
+		System.out.println(CountStepsBlank.calculateStandardDeviation(accmags, CountStepsBlank.calculateMean(accmags)));	
 		
 		Plot2DPanel plot = new Plot2DPanel();
 		
 		// add a line plot to the PlotPanel
 		plot.addLinePlot("y = x + noise", accmags);
-//		plot.addLinePlot("y = x + noise", gmags);
-		
+
 		// put the PlotPanel in a JFrame, as a JPanel
 		JFrame frame = new JFrame("Results");
 		frame.setSize(800, 600);
