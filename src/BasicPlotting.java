@@ -6,7 +6,7 @@ import org.math.plot.Plot2DPanel;
 public class BasicPlotting {
 	public static double[][] sampleData;
 //	public static String datafile = "data/64StepsInPocketJogging-out.csv";
-	public static String datafile = "data/p1_walking.csv";
+	public static String datafile = "data/p2_walking.csv";
 	
 	public static void main(String[] args) {
 		// Create data set
@@ -19,9 +19,9 @@ public class BasicPlotting {
 		double[][] sensorData = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
 		
 		int steps = CountStepsBlank.countSteps(time, sensorData);
-		System.out.println(steps);
+		int originalSteps = CountStepsBlank.originalCountSteps(time, sensorData);
+		System.out.println(steps + " " + originalSteps);
 		
-//		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
 		double[] accmags = CountStepsBlank.calculateMagnitudesFor(sensorData);
 		
 //		System.out.println(CountStepsBlank.calculateMean(accmags));

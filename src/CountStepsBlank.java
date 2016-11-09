@@ -53,6 +53,28 @@ public class CountStepsBlank {
 		return stepCount;
 	}
 
+	public static int originalCountSteps(double[] times, double[][] sensorData) {
+		int length = 3;
+		double[] accData = new double[length];
+		int stepCount = 0;
+				
+		for (int row = 0; row < length; row++) {
+			for (int col = 0; col <= sensorData[0].length; col++) {
+				accData = calculateMagnitudesFor(sensorData);
+			}	
+		}
+		
+		double mean = calculateMean(accData);
+		double accStandardDev = calculateStandardDeviation(accData, calculateMean(accData));
+		
+		for (int i = 0; i < accData.length; i++) {
+			if (accData[i] > accStandardDev + mean) {
+				stepCount++;
+			}
+		}
+		return stepCount;
+	}
+	
 	/***
 	 * Calculate the magnitude for a vector with x, y, and z components.
 	 * 
