@@ -22,35 +22,26 @@ public class CountStepsBlank {
 	 * @return an int representing the number of steps
 	 */
 	public static int countSteps(double[] times, double[][] sensorData) {
-		double[] accData = new double[3];
+		int length = 6, startPoint = 3;
+		double[] accData = new double[length];
 		int stepCount = 0;
 				
-		for (int row = 0; row < sensorData.length; row++) {
-			for (int col = 10; col <= 12; col++) {
+		for (int row = 0; row < length; row++) {
+			for (int col = 0; col <= sensorData[0].length; col++) {
 				accData = calculateMagnitudesFor(sensorData);
 			}	
 		}
 		
-//		double mean = calculateMean(accData);
-//		double accStandardDev = calculateStandardDeviation(accData, mean);
-//		
-//		double threshold = accStandardDev + mean;
-		
-		for (int i = 1; i < accData.length - 1; i++) {
-			//for loop through 6 points front and back
-			//put points in a double[]
+		for (int i = startPoint; i < accData.length - 3; i++) {
+			double[] sixPoints = {accData[i - 3], accData[i - 2], accData[i - 1], 
+					accData[i], accData[i + 1], accData[i + 2], accData[i + 3]};
 			
-			double[] threePoints = {accData[i - 1], accData[i], accData[i + 1]};
+			double mean = calculateMean(sixPoints);
+			double standardDev = calculateStandardDeviation(sixPoints, mean);
 			
-			double pointMean = calculateMean(threePoints);
-			double pointSD = calculateStandardDeviation(threePoints, pointMean);
+			double threshold = standardDev + mean;
 			
-			double pointThreshold = pointSD + pointMean;
-			
-			// && accData[i] >= threshold - 4.0
-//			|| accData[i] <= threshold + 4.0
-				
-			if (accData[i] > pointThreshold) {
+			if (accData[i] > threshold) {
 				stepCount++;
 			}
 		}

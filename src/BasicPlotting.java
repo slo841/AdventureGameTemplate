@@ -6,7 +6,7 @@ import org.math.plot.Plot2DPanel;
 public class BasicPlotting {
 	public static double[][] sampleData;
 //	public static String datafile = "data/64StepsInPocketJogging-out.csv";
-	public static String datafile = "data/p1_milling.csv";
+	public static String datafile = "data/p2_running.csv";
 	
 	public static void main(String[] args) {
 		// Create data set
@@ -16,13 +16,13 @@ public class BasicPlotting {
 		sampleData = dataset.getAllData();
 
 		double[] time = ArrayHelper.extractColumn(sampleData, 0);		
-		double[][] sensorData = ArrayHelper.extractColumns(sampleData, new int[] { 4, 5, 6, 10, 11, 12 });
+		double[][] sensorData = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
 		
 		int steps = CountStepsBlank.countSteps(time, sensorData);
 		System.out.println(steps);
 		
-		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
-		double[] accmags = CountStepsBlank.calculateMagnitudesFor(accel);
+//		double[][] accel = ArrayHelper.extractColumns(sampleData, new int[] { 10, 11, 12 });
+		double[] accmags = CountStepsBlank.calculateMagnitudesFor(sensorData);
 		
 		System.out.println(CountStepsBlank.calculateMean(accmags));
 		System.out.println(CountStepsBlank.calculateStandardDeviation(accmags, CountStepsBlank.calculateMean(accmags)));	
