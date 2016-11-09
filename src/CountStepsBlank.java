@@ -32,6 +32,11 @@ public class CountStepsBlank {
 			}	
 		}
 		
+		double accmean = calculateMean(accData);
+		double accstandardDev = calculateStandardDeviation(accData, accmean);
+		
+		double accthreshold = accstandardDev + accmean;
+		
 		for (int i = startPoint; i < accData.length - 3; i++) {
 			double[] sixPoints = {accData[i - 3], accData[i - 2], accData[i - 1], 
 					accData[i], accData[i + 1], accData[i + 2], accData[i + 3]};
@@ -41,7 +46,7 @@ public class CountStepsBlank {
 			
 			double threshold = standardDev + mean;
 			
-			if (accData[i] > threshold) {
+			if (accData[i] > threshold || accData[i] < accthreshold - 4) {
 				stepCount++;
 			}
 		}
