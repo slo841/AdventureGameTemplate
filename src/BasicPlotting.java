@@ -5,8 +5,12 @@ import org.math.plot.Plot2DPanel;
 
 public class BasicPlotting {
 	public static double[][] sampleData;
-//	public static String datafile = "data/64StepsInPocketJogging-out.csv";
-	public static String datafile = "data/p2_running.csv";
+	public static String datafile = "data/p1_milling.csv";
+	public static String datafile1 = "data/p2_milling.csv";
+	public static String datafile2 = "data/p1_running.csv";
+	public static String datafile3 = "data/p2_running.csv";
+	public static String datafile4 = "data/p1_walking.csv";
+	public static String datafile5 = "data/p2_walking.csv";
 	
 	public static void main(String[] args) {
 		// Create data set
@@ -23,10 +27,7 @@ public class BasicPlotting {
 		System.out.println(steps + " " + originalSteps);
 		
 		double[] accmags = CountStepsBlank.calculateMagnitudesFor(sensorData);
-		
-//		System.out.println(CountStepsBlank.calculateMean(accmags));
-//		System.out.println(CountStepsBlank.calculateStandardDeviation(accmags, CountStepsBlank.calculateMean(accmags)));	
-		
+	
 		Plot2DPanel plot = new Plot2DPanel();
 		
 		// add a line plot to the PlotPanel

@@ -255,7 +255,6 @@ public class ArrayHelper {
 	 * @return a 2d array with each parameter as a column in the output
 	 */
 	public static double[][] combineAsColumns(double[]...columns) {
-		// TODO: should we make a fresh copy?
 		return transposeArray(columns);
 	}
 }
