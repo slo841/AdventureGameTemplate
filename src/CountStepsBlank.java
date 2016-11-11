@@ -6,6 +6,7 @@ import org.math.plot.Plot2DPanel;
 public class CountStepsBlank {
 
 	/***
+	 * IMPROVED STEP COUNTER
 	 * Counts the number of steps based on sensor data.
 	 * 
 	 * @param times
@@ -53,6 +54,23 @@ public class CountStepsBlank {
 		return stepCount;
 	}
 
+	/***
+	 * ORIGINAL STEP COUNTER
+	 * Counts the number of steps based on sensor data.
+	 * 
+	 * @param times
+	 *            a 1d-array with the elapsed times in miliseconds for each row
+	 *            in the sensorData array.
+	 * 
+	 * @param sensorData
+	 *            a 2d-array where rows represent successive sensor data
+	 *            samples, and the columns represent different sensors. We
+	 *            assume there are 6 columns. Columns 0 - 2 are data from the x,
+	 *            y, and z axes of an accelerometer, and 3-5 are data from the
+	 *            x, y, and z axes of a gyro.
+	 * 
+	 * @return an int representing the number of steps
+	 */
 	public static int originalCountSteps(double[] times, double[][] sensorData) {
 		int length = 3;
 		double[] accData = new double[length];

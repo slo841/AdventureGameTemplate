@@ -8,10 +8,28 @@ public class CSVData {
 	private static boolean DEBUG = false;
 	private double[][] rawData;
 
+	/***
+	 * Changes the raw data into the new, organized data
+	 * 
+	 * @param data
+	 * 			the new, organized data
+	 */
 	private CSVData(double[][] data) {
 		rawData = data;
 	}
 	
+	/***
+	 * Creates a new CSVData object from the given filepath
+	 * 
+	 * @param filepath
+	 * 			the path to the file
+	 * 
+	 * @param linesToSkip
+	 * 			the number of lines to skip when creating the object
+	 * 
+	 * @return a new CSVData object
+	 * 		
+	 */
 	public static CSVData createDataSet(String filepath, int linesToSkip) {
 		debug("Reading file: " + filepath);
 		
@@ -31,6 +49,24 @@ public class CSVData {
 		return createDataSet(filepath, linesToSkip + 1, headers, startColumn);
 	}
 	
+	/***
+	 * Creates a new CSVdata object from the filepath and 
+	 * includes headers
+	 * 
+	 * @param filepath
+	 * 			the path to the file
+	 * 
+	 * @param linesToSkip
+	 * 			the number of lines to skip when creating data set
+	 * 
+	 * @param columnHeaders
+	 * 			a String array of all the column names
+	 * 
+	 * @param startColumn
+	 * 			the starting column
+	 * 
+	 * @return a new CSVData object
+	 */
 	public static CSVData createDataSet(String filepath, int linesToSkip, String[] columnHeaders, int startColumn) {
 		debug("Reading file: " + filepath);
 		
@@ -65,8 +101,14 @@ public class CSVData {
 		return rawData;
 	}
 	
-	
-		
+	/***
+	 * Saves the state of the data into a CSV file
+	 * 
+	 * @param filePath
+	 *            the path to the file that you save the data into
+	 * @param data
+	 *            the file data
+	 */
 	public static void writeDataToFile(String filePath, String data) {
 		File outFile = new File(filePath);
 
@@ -77,6 +119,14 @@ public class CSVData {
 		}
 	}
 	
+	/***
+	 * Returns a file as a String
+	 * 
+	 * @param filepath 
+	 * 			the path to the file
+	 * @return output
+	 * 			the resulting String
+	 */
 	public static String readFileAsString(String filepath) {
 		StringBuilder output = new StringBuilder();
 
@@ -93,7 +143,13 @@ public class CSVData {
 		return output.toString();
 	}
 	
-	
+	/***
+	 * Checks if an error has occurred
+	 * 
+	 * @param string
+	 * 			the String that might or might not
+	 * 			have an error
+	 */
 	private static void debug(String string) {
 		if (DEBUG ) {
 			System.err.println(string);
