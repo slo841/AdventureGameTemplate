@@ -53,7 +53,6 @@ public class Game extends Canvas implements Runnable {
 		screen = new Screen(SCREEN_WIDTH, SCREEN_HEIGHT);
 		input = new InputHandler(this);
 		level = new Level("/levels/water_test_level.png");
-//		level = new Level("/levels/small_test_level.png");
 		level.setTileAt(3, 3, Tile.STONE);
 		level.setTileAt(10, 2, Tile.GRASS2);
 
