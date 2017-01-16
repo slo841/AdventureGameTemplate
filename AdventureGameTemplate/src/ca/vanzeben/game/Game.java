@@ -42,7 +42,7 @@ public class Game extends Canvas implements Runnable {
 
 	private Player player;
 
-	public boolean debug = false;
+	private boolean debug = true;
 	public boolean isApplet = false;
 
 	public void init() {
@@ -140,7 +140,7 @@ public class Game extends Canvas implements Runnable {
 	public void render() {
 		BufferStrategy bs = getBufferStrategy();
 		if (bs == null) {
-			createBufferStrategy(3);
+			createBufferStrategy(2);
 			return;
 		}
 
